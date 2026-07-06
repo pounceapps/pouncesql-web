@@ -482,3 +482,20 @@ a:focus-visible,.btn:focus-visible,.demo-tab:focus-visible{outline:2px solid var
 .ldash-help .lh-t b { color:var(--text); font:700 .98rem var(--ui); }
 .ldash-help .lh-t span { color:var(--mute); font:.85rem var(--ui); margin-top:3px; line-height:1.45; }
 .ldash-help .lh-t code { font:12px var(--mono); color:var(--blue); }
+
+/* ---- Click-to-copy example blocks --------------------------------------- */
+.copyable{ position:relative; cursor:pointer; }
+pre.copyable{ padding-right:74px; }
+.brew code.copyable{ text-align:left; padding-right:78px; }
+.brewline.copyable{ text-align:left; padding-right:78px; }
+.copy-btn{
+  position:absolute; top:8px; right:8px; z-index:3;
+  font:600 10px ui-monospace,Menlo,monospace; letter-spacing:.06em; text-transform:uppercase;
+  color:#9fb0a3; background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.16); border-radius:6px;
+  padding:4px 10px; cursor:pointer; line-height:1;
+  transition:color .12s,border-color .12s,background .12s;
+}
+.copy-btn:hover{ color:#3CF500; border-color:rgba(60,245,0,.6); background:rgba(60,245,0,.08); }
+.copy-btn.copied{ color:#04140a; background:#3CF500; border-color:#3CF500; }
+@media(max-width:600px){ .copy-btn{ font-size:9px; padding:3px 7px; } }
