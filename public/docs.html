@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PounceSQL — Documentation</title>
+<meta name="description" content="PounceSQL documentation: install, connect to Azure SQL / SQL Server / PostgreSQL / SQLite, AI assistant with OpenAI/Anthropic/Ollama/gateway providers, diagrams & charts, MCP server, security & PHI." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html"><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span></a>
+    <nav class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#download">Download</a>
+      <a href="whatsnew.html">What's New</a>
+      <a href="docs.html" class="active">Docs</a>
+      <a href="https://github.com/pounceapps/downloads" class="nav-gh">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-wrap wrap">
+  <aside class="docs-side">
+    <nav>
+      <a href="#install">Install</a>
+      <a href="#first-run">First run</a>
+      <a href="#azure">Azure SQL</a>
+      <a href="#sqlserver">SQL Server</a>
+      <a href="#postgres">PostgreSQL</a>
+      <a href="#sqlite">SQLite</a>
+      <a href="#browsing">Browsing &amp; queries</a>
+      <a href="#ai">AI assistant</a>
+      <a href="#providers">AI providers</a>
+      <a href="#ollama">Local models (Ollama)</a>
+      <a href="#gateway">AI gateway (BYO)</a>
+      <a href="#richoutput">Diagrams &amp; charts</a>
+      <a href="#history">Chat history</a>
+      <a href="#mcp">MCP server</a>
+      <a href="#appearance">Themes &amp; fonts</a>
+      <a href="#security">Security &amp; PHI</a>
+    </nav>
+  </aside>
+
+  <main class="docs-main">
+    <h1>Documentation</h1>
+    <p class="docs-lede">PounceSQL is a native macOS SQL client for Azure SQL, SQL Server,
+      PostgreSQL, and SQLite, with an AI assistant and a built-in MCP server.</p>
+
+    <section id="install">
+      <h2>Install</h2>
+      <p><b>Homebrew (recommended):</b></p>
+      <pre><code>brew trust pounceapps/tap
+brew install --cask pounceapps/tap/pouncesql</code></pre>
+      <p>Homebrew 6.0+ requires trusting a third-party tap once before it will
+        install from it; <code>brew trust</code> records that. Upgrade later with
+        <code>brew upgrade --cask pouncesql</code>.</p>
+      <p><b>Direct download:</b> grab the latest <code>.dmg</code> from the
+        <a href="https://github.com/pounceapps/downloads/releases/latest">releases page</a>,
+        open it, and drag PounceSQL into Applications. The app is Developer-ID
+        signed and notarized, so it opens without a Gatekeeper prompt.</p>
+      <p>Requirements: macOS 13+ (Apple Silicon).</p>
+    </section>
+
+    <section id="first-run">
+      <h2>First run</h2>
+      <p>Launch PounceSQL and click <b>+ Add</b> in the left panel to connect your
+        first database. The <b>Add connection</b> wizard has a tab for each engine —
+        pick the one you need. Once connected, databases appear in the tree on the
+        left; expand them to browse schemas, tables, and columns.</p>
+    </section>
+
+    <section id="azure">
+      <h2>Azure SQL</h2>
+      <p>Azure SQL uses your Azure CLI session — no passwords are stored.</p>
+      <ol>
+        <li>Install the CLI: <code>brew install azure-cli</code></li>
+        <li>Sign in: <code>az login</code> (or click the account chip in the title bar).</li>
+        <li>In the wizard's <b>Azure SQL</b> tab, browse your subscriptions → servers →
+          databases and pick one to pin.</li>
+      </ol>
+    </section>
+
+    <section id="sqlserver">
+      <h2>SQL Server (2017–2025+)</h2>
+      <p>Connect to local or domain-joined SQL Server. In the wizard's
+        <b>SQL Server</b> tab, enter the server (<code>host</code>,
+        <code>host:1433</code>, or <code>host\instance</code>) and choose an
+        authentication mode:</p>
+      <ul>
+        <li><b>SQL Server login</b> — username + password.</li>
+        <li><b>Windows / domain (NTLM)</b> — <code>DOMAIN\user</code> + password.
+          Works from a Mac that isn't domain-joined.</li>
+        <li><b>Kerberos (SSO — no password)</b> — click <b>Get Kerberos ticket</b>
+          to run <code>kinit</code>; your password is entered at the OS prompt and
+          never stored in PounceSQL. Requires an <code>MSSQLSvc</code> SPN registered
+          for the server.</li>
+      </ul>
+      <p>Pin the whole server to browse every database it hosts, or add a single
+        database directly.</p>
+    </section>
+
+    <section id="postgres">
+      <h2>PostgreSQL</h2>
+      <p>In the <b>PostgreSQL</b> tab, enter the server (<code>host</code> or
+        <code>host:5432</code>), your role, and password, then pick an SSL mode
+        (Prefer / Require / Disable). Click <b>Connect &amp; List Databases</b> to
+        pin the whole server (browse every database) or add one database directly.</p>
+    </section>
+
+    <section id="sqlite">
+      <h2>SQLite</h2>
+      <p>In the <b>SQLite</b> tab, click <b>Browse…</b> and pick a
+        <code>.db</code> / <code>.sqlite</code> file. No server or login is needed —
+        PounceSQL opens the file and lists its tables.</p>
+    </section>
+
+    <section id="browsing">
+      <h2>Browsing &amp; queries</h2>
+      <ul>
+        <li><b>Expand</b> a database to see tables and views; expand a table to see
+          its columns (primary keys and nullability marked).</li>
+        <li><b>Double-click</b> a table to preview its rows.</li>
+        <li><b>Right-click</b> a table for actions — Select Top N, Row Count,
+          Describe Schema, List Columns, Show Indexes — each generated in the correct
+          dialect for the engine (LIMIT vs TOP, etc.).</li>
+        <li><b>Filter</b> box searches databases and tables, including databases
+          nested under a server.</li>
+        <li>Run queries with <b>F5</b> or <b>⌘↵</b>. Results appear in the grid below;
+          multiple query tabs are supported.</li>
+      </ul>
+    </section>
+
+    <section id="ai">
+      <h2>AI assistant</h2>
+      <p>Open the AI panel (the robot icon in the title bar, or the panel on the right)
+        and ask in plain English. The assistant is grounded in the schema you're
+        connected to, writes SQL in the correct dialect for the engine, and can inspect
+        tables and run <b>read-only</b> queries itself to answer — then render the result
+        as a diagram, chart, table or KPI cards.</p>
+      <ul>
+        <li><b>Quick model switcher</b> — the model icon next to <b>New chat</b> lists
+          every configured model across all providers; pick one and it switches live.
+          The status bar shows the active model.</li>
+        <li><b>Run just a selection</b> — highlight part of the editor and F5 runs only
+          that; otherwise the whole editor runs.</li>
+        <li><b>Per-message usage</b> — token counts appear under each answer; session
+          totals, top model and estimated spend are on the About page.</li>
+      </ul>
+    </section>
+
+    <section id="providers">
+      <h2>AI providers</h2>
+      <p>Configure providers in <b>Settings → AI Provider</b>. Each provider remembers its
+        own <b>endpoint, model and key</b>, so you can swap freely and everything is kept.
+        Endpoint URLs are shown (and editable) with sensible defaults.</p>
+      <ul>
+        <li><b>OpenAI</b> and <b>Anthropic</b> — direct API key, with native tool-calling
+          for both. Pick from a model dropdown (Claude Sonnet/Haiku/Opus, GPT-4o, …) or
+          type any model id.</li>
+        <li><b>Ollama (local / LAN)</b> — see below.</li>
+        <li><b>AI API gateway</b> — see below.</li>
+      </ul>
+      <p>Google (Gemini) is intentionally not offered — its tool-calling is unreliable for
+        the agentic schema/query workflow PounceSQL uses.</p>
+    </section>
+
+    <section id="ollama">
+      <h2>Local models (Ollama)</h2>
+      <p>Run models entirely on your own machine or network — your data never leaves it,
+        which is ideal for sensitive or PHI work. In <b>Settings → AI Provider → Direct →
+        Ollama (Local / LAN)</b>:</p>
+      <ol>
+        <li>Set the endpoint to your Ollama server — <code>http://localhost:11434</code>,
+          a LAN address, or a <b>Tailscale IP</b> (<code>http://100.x.x.x:11434</code>) if
+          the machine isn't on your local network.</li>
+        <li>Click <b>Load models</b> to populate the dropdown from the server's
+          <code>/api/tags</code>, and pick one.</li>
+      </ol>
+      <p>Use an <b>instruct</b> model for tool-calling (e.g. <code>qwen2.5:14b-instruct</code>,
+        <code>llama3.1:8b</code>). Coder-only and Gemma variants don't emit structured tool
+        calls, so they can't drive the schema/query workflow.</p>
+    </section>
+
+    <section id="gateway">
+      <h2>AI gateway (bring your own)</h2>
+      <p>PounceSQL works with an OAuth2 (client-credentials) AI gateway that exposes a
+        model-discovery endpoint and an OpenAI-compatible chat endpoint. In
+        <b>Settings → AI API GW</b>, paste or import the credentials JSON, then
+        <b>Test Gateway &amp; Discover Models</b>. Secrets are stored only in the encrypted
+        local settings file. The model dropdown shows each model's <b>cost per 1k tokens</b>
+        and a <b>PHI-cleared</b> badge from discovery, and PounceSQL routes each model by its
+        native format (OpenAI-style models to <code>/chat/completions</code>, Claude models
+        to the Anthropic <code>/messages</code> endpoint).</p>
+      <p><b>Implementing your own gateway</b> needs three things:</p>
+      <ol>
+        <li>An OAuth2 token endpoint (client-credentials grant).</li>
+        <li>A discovery endpoint returning <code>{ "models": [ … ] }</code>, where each model
+          has <code>id</code>, <code>api_format</code> (<code>openai</code>/<code>anthropic</code>),
+          optional <code>phi_allowed</code> + <code>cost</code> + <code>context_window</code>.</li>
+        <li>An OpenAI-compatible <code>/chat/completions</code> (and, for Claude models, an
+          Anthropic-format <code>/messages</code>) endpoint that accepts the bearer token +
+          an <code>X-Api-Key</code> header.</li>
+      </ol>
+    </section>
+
+    <section id="richoutput">
+      <h2>Diagrams, charts &amp; rich output</h2>
+      <p>Ask the assistant to visualize and it renders the result inline:</p>
+      <ul>
+        <li><b>Diagrams</b> — “diagram this schema” produces a Mermaid ER diagram (it reads
+          real keys first); it can also draw flowcharts, sequence, gantt and more.</li>
+        <li><b>Charts</b> — “chart sales by month” runs the query and renders a bar/line/pie
+          chart (Chart.js), themed to match the app.</li>
+        <li><b>Heatmaps</b>, <b>KPI metric cards</b>, and sortable <b>result grids</b> with
+          one-click <b>CSV / JSON export</b>.</li>
+        <li>Full <b>Markdown</b> (tables, lists), syntax-highlighted code with Copy /
+          Use-in-editor, and <b>LaTeX</b> for formulas.</li>
+        <li>Any diagram or chart can be saved as <b>PNG</b>.</li>
+      </ul>
+    </section>
+
+    <section id="history">
+      <h2>Chat history</h2>
+      <p>Your last 50 conversations are saved automatically on your machine. The clock icon
+        in the AI header opens the history viewer — browse, reload, or delete a chat, and
+        <b>export</b> any conversation as Markdown. Nothing is sent anywhere.</p>
+    </section>
+
+    <section id="mcp">
+      <h2>MCP server</h2>
+      <p>PounceSQL runs a local Model Context Protocol server so agents like Claude
+        Code can drive it. In <b>Settings → MCP Server</b> you'll find the SSE endpoint
+        (<code>http://127.0.0.1:7457/sse</code>) and a one-line command to add it:</p>
+      <pre><code>claude mcp add --transport sse pouncesql http://127.0.0.1:7457/sse</code></pre>
+      <p>Agents can then list databases, run queries, browse schema, and read logs —
+        and you watch the actions happen live in the app. Writes are blocked unless you
+        enable them in <b>Settings → Tools</b>.</p>
+    </section>
+
+    <section id="appearance">
+      <h2>Themes &amp; fonts</h2>
+      <p><b>Settings → Themes</b> offers a dozen editor themes (One Dark, Dracula,
+        Monokai, Nord, Tokyo Night, Light, and more). <b>Settings → Fonts</b> lets you
+        choose separate fonts for the interface and the editor, and set independent
+        sizes for the editor, the tree/lists, the results grid, and the UI. Quick
+        <b>A−&nbsp;/&nbsp;A+</b> buttons in the tree header adjust the list size on the fly.</p>
+    </section>
+
+    <section id="security">
+      <h2>Security &amp; PHI</h2>
+      <ul>
+        <li>All secrets — connection passwords, API keys (including per-provider keys),
+          gateway credentials — are stored only in an encrypted local settings file
+          (AES-256-GCM); the key lives in your login keychain. They're never displayed in
+          the UI (fields show a “saved” marker) and never sent anywhere but the provider.</li>
+        <li>The AI assistant and MCP server are <b>read-only by default</b> — writes
+          (INSERT/UPDATE/DELETE/DDL) require explicitly enabling them in
+          <b>Settings → Tools</b>.</li>
+        <li>Azure SQL uses your <code>az login</code> session; Kerberos uses a ticket —
+          neither stores a password.</li>
+        <li><b>PHI</b>: for gateway models, a <b>PHI OK / NO PHI</b> pill reflects the
+          selected model's clearance from discovery. For maximum control, run a
+          <b>local Ollama model</b> so data never leaves your machine.</li>
+        <li>Connection errors and logs are scrubbed of embedded passwords before they can
+          reach the UI or MCP.</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span> — a native macOS SQL client.</span>
+    <a href="https://github.com/pounceapps/downloads">github.com/pounceapps/downloads</a>
+  </div>
+</footer>
+
+</body>
+</html>

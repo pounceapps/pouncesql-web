@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PounceSQL — the AI-native SQL client for macOS</title>
+  <meta name="description" content="A fast, native macOS SQL client for Azure SQL, SQL Server, PostgreSQL & SQLite — with an AI assistant that writes the query, charts the results, and diagrams your schema. Bring your own model, or a built-in MCP server so Claude Code can drive it." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" style="text-decoration:none"><span class="brand"><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span></span></a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#ai">AI</a>
+      <a href="#providers">Providers</a>
+      <a href="learn.html">Learn SQL</a>
+      <a href="whatsnew.html">What's New</a>
+      <a href="docs.html">Docs</a>
+      <a href="#download" class="nav-cta">Download</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="s-hero">
+  <div class="wrap">
+    <div class="s-hero-copy">
+      <div class="s-eyebrow"><span class="s-free">FREE</span> · Native macOS · Azure SQL · SQL Server · PostgreSQL · SQLite</div>
+      <h1>The free, native Mac SQL client that <span class="accent">pounces</span> on your data.</h1>
+      <p class="s-lede">One fast, native app for <b>all four databases you actually use</b> — Azure SQL, SQL Server,
+        PostgreSQL and SQLite — and it's <b>free</b>. Its AI assistant writes the query, charts the results, and
+        explains them in plain English.</p>
+      <div class="s-cta">
+        <a class="btn btn-primary" href="#download">Download free for macOS</a>
+        <a class="btn btn-ghost" href="#ai">See it in action</a>
+      </div>
+      <div class="brew"><code>brew trust pounceapps/tap<br>brew install --cask pounceapps/tap/pouncesql</code></div>
+      <p class="s-note">Homebrew 6.0+ asks you to trust a third-party tap once — <code>brew trust</code> does that. Then start the AI with <b>free Google AI</b>, a local model, or a few dollars of OpenAI/Anthropic credits.
+        Ships with a demo database — open it and start querying, no server or login.</p>
+    </div>
+    <figure class="s-shot s-hero-shot">
+      <img src="screenshots/sql-kpi.png" alt="PounceSQL: the schema tree and typed columns on the left, an AI-generated SQL query and results in the middle, and the AI assistant returning live KPIs on the right" />
+    </figure>
+  </div>
+</section>
+
+<!-- ENGINES STRIP -->
+<section class="s-engines">
+  <div class="wrap">
+    <h2 class="s-h2">One client. Every database you use.</h2>
+    <div class="s-eng-grid">
+      <div class="s-eng"><h3>Azure SQL</h3><p>Sign in with your directory — browse subscriptions, servers and databases. No passwords stored.</p></div>
+      <div class="s-eng"><h3>SQL Server</h3><p>2017–2025+, local or domain-joined. SQL login, Windows/NTLM, or passwordless <b>Kerberos SSO</b>.</p></div>
+      <div class="s-eng"><h3>PostgreSQL</h3><p>Over LAN, VPN or Tailscale. Pin a whole server and browse every database it hosts.</p></div>
+      <div class="s-eng"><h3>SQLite</h3><p>Open any <code>.db</code> file — no server, no login. Pick the file and query.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY: what you can do -->
+<section class="s-section s-alt">
+  <div class="wrap">
+    <div class="s-lead">
+      <div class="s-eyebrow">What you can do with it</div>
+      <h2 class="s-h2">More than a query tool.</h2>
+      <p class="s-sub">Whether you're learning SQL, watching your budget, or wiring up an AI toolchain — it meets you where you are.</p>
+    </div>
+    <div class="s-cards s-cards-3">
+      <div class="s-card">
+        <h3>Learning SQL?</h3>
+        <p>Describe what you want and watch the AI build the query — then read it, tweak it, run it. Or write your own
+          and ask <i>"explain this."</i> A patient tutor working on real data.</p>
+        <p><a class="s-dl-link" href="learn.html">Free databases &amp; lessons →</a></p>
+      </div>
+      <div class="s-card">
+        <h3>On any budget</h3>
+        <p><b>Free</b> with Google AI. <b>$0 and fully private</b> with a local <b>coder model in Ollama</b> — no data
+          leaves your Mac. Or drop <b>$10–20</b> of OpenAI / Anthropic credits for the top models. The app itself is
+          always free.</p>
+      </div>
+      <div class="s-card">
+        <h3>Your whole toolkit</h3>
+        <p>Pair it with <b>PouncePad</b> and <b>Claude Code</b>. Claude drives PounceSQL over the built-in MCP
+          server — querying, diagramming, dropping results into PouncePad — while you watch it happen. One workflow,
+          genuinely powerful.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI: FEATURE ROWS -->
+<section id="ai" class="s-section">
+  <div class="wrap">
+    <div class="s-lead">
+      <div class="s-eyebrow">The AI assistant</div>
+      <h2 class="s-h2">Ask your data — and <span class="accent">see</span> it.</h2>
+      <p class="s-sub">It runs read-only queries against your live connection, then renders the answer the way you'd
+        actually want it. Read-only by default; writes only when you say so.</p>
+    </div>
+
+    <div class="s-row">
+      <figure class="s-shot"><img src="screenshots/sql-hero.png" loading="lazy" alt="The AI generating SQL and a bar chart of tracks per album, with Copy and Use-in-editor buttons" /></figure>
+      <div class="s-row-text">
+        <h3>It writes the query, then charts the answer.</h3>
+        <p>Ask in plain language. PounceSQL generates <b>engine-correct SQL</b>, runs it, and turns the result into a
+          Chart.js visual — bar, line, scatter — right in the chat. Every answer shows the exact SQL, with
+          <b>Copy</b> and <b>Use&nbsp;in&nbsp;editor</b>.</p>
+      </div>
+    </div>
+
+    <div class="s-row reverse">
+      <figure class="s-shot"><img src="screenshots/sql-kpi.png" loading="lazy" alt="The AI returning a KPI dashboard and a plain-English database summary" /></figure>
+      <div class="s-row-text">
+        <h3>Turn a question into a dashboard.</h3>
+        <p>"Give me the KPIs" returns clean metric cards and a plain-English summary you can actually paste into a
+          report. Diagrams (Mermaid), heatmaps, Markdown tables and LaTeX all render inline — and export as <b>PNG</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE GRID -->
+<section id="features" class="s-section s-alt">
+  <div class="wrap">
+    <div class="s-lead">
+      <h2 class="s-h2">Built for people who live in SQL.</h2>
+    </div>
+    <div class="s-cards">
+      <div class="s-card"><h3>Browse the whole server</h3><p>Pin a server and expand it like a tree — every database, schema, table and column, with type badges. Filter across databases; right-click to preview, count, or generate a query.</p></div>
+      <div class="s-card"><h3>An editor that knows your dialect</h3><p>Syntax highlighting, table- and column-aware autocomplete, and an optional live syntax checker, tuned to the connected engine (T-SQL, Postgres, SQLite). Run the whole editor or just the selection.</p></div>
+      <div class="s-card"><h3>Rich, exportable answers</h3><p>Markdown, highlighted code with Copy / Use-in-editor, Mermaid diagrams, Chart.js charts, heatmaps, KPI cards, sortable grids with CSV / JSON export, and LaTeX.</p></div>
+      <div class="s-card"><h3>Chat history that sticks</h3><p>Your last 50 conversations are saved automatically — reload, delete, export a chat as Markdown, or save any diagram or chart as PNG.</p></div>
+      <div class="s-card"><h3>Read-only by default</h3><p>The assistant and MCP tools never run a write (INSERT/UPDATE/DELETE/DDL) unless you explicitly turn it on. Query with confidence.</p></div>
+      <div class="s-card"><h3>Yours to shape</h3><p>Thirteen editor themes, separate fonts for interface and editor, independent sizing for editor, tree, results and status bar, and a collapsible sidebar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MCP HIGHLIGHT -->
+<section class="s-section">
+  <div class="wrap">
+    <div class="s-row">
+      <figure class="s-shot"><img src="screenshots/sql-mcp.png" loading="lazy" alt="PounceSQL's built-in MCP server running on a local port, with a one-line command to add it to Claude Code" /></figure>
+      <div class="s-row-text">
+        <div class="s-eyebrow">Built-in MCP server</div>
+        <h3>Let Claude Code drive your database.</h3>
+        <p>PounceSQL runs a local Model Context Protocol server. One command wires it into Claude Code — then agents can
+          list databases, browse schema, run read-only queries, even take screenshots. You watch every tool call happen
+          <b>live in the Tools panel</b>.</p>
+        <div class="brew"><code>claude mcp add --transport sse pouncesql http://127.0.0.1:7457/sse</code></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THEMES HIGHLIGHT -->
+<section class="s-section s-alt">
+  <div class="wrap">
+    <div class="s-row reverse">
+      <figure class="s-shot"><img src="screenshots/sql-themes.png" loading="lazy" alt="PounceSQL's theme gallery — thirteen editor themes from Dracula and Tokyo Night to Retro Terminal, each with a live preview" /></figure>
+      <div class="s-row-text">
+        <div class="s-eyebrow">Make it yours</div>
+        <h3>Thirteen themes, applied everywhere.</h3>
+        <p>From VS Code Dark+ and GitHub Dark to Dracula, Nord, Tokyo Night, and the phosphor-green
+          <b>Retro Terminal</b> — each with a live SQL preview. Pick separate fonts and sizes for the interface, editor,
+          tree, and results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVIDERS -->
+<section id="providers" class="s-section">
+  <div class="wrap">
+    <div class="s-lead">
+      <div class="s-eyebrow">Bring your own model</div>
+      <h2 class="s-h2">Any model. Your data, where you want it.</h2>
+      <p class="s-sub">Pick a provider per your policy — cloud, enterprise gateway, or fully local — and switch models
+        from a dropdown in the chat header. Each provider remembers its own endpoint, model and key.</p>
+    </div>
+    <div class="s-cards s-cards-3">
+      <div class="s-card"><h3>OpenAI &amp; Anthropic &amp; Google</h3><p>Direct API key with native tool-calling — GPT, Claude and Gemini can inspect your schema and run read-only queries. Pick any model from the header.</p></div>
+      <div class="s-card s-card-hl"><h3>Ollama — local &amp; LAN <span class="s-tag">private</span></h3><p>Point at <code>http://host:11434</code> (localhost, LAN or Tailscale). Your data never leaves your machine — ideal for sensitive work. Load the model list from the server.</p></div>
+      <div class="s-card"><h3>Enterprise AI gateway <span class="s-tag">BYO</span></h3><p>OAuth2 gateways with discovery. Routes each model by its native format, shows <b>cost per model</b>, and a <b>PHI-cleared</b> badge — with per-message token counts and session spend.</p></div>
+    </div>
+
+    <h3 class="s-table-title">Get an AI key — free or cheap</h3>
+    <div class="s-table-wrap">
+      <table class="s-aitable">
+        <thead><tr><th>Option</th><th>Cost</th><th>Good for</th><th></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Google&nbsp;AI</b> (Gemini)</td>
+            <td><span class="s-pill ok">Free tier</span></td>
+            <td>The easiest free start — grab a key in a minute.</td>
+            <td><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Get a key ↗</a></td>
+          </tr>
+          <tr>
+            <td><b>Ollama</b> (local)</td>
+            <td><span class="s-pill ok">Free · private</span></td>
+            <td>Runs on your Mac. Try a coder model — nothing leaves your machine.</td>
+            <td><a href="https://ollama.com/download" target="_blank" rel="noopener">Download ↗</a></td>
+          </tr>
+          <tr>
+            <td><b>OpenAI</b></td>
+            <td><span class="s-pill">~$10–20</span></td>
+            <td>GPT models. Pay-as-you-go credits stretch a long way.</td>
+            <td><a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">Get a key ↗</a></td>
+          </tr>
+          <tr>
+            <td><b>Anthropic</b> (Claude)</td>
+            <td><span class="s-pill">~$10–20</span></td>
+            <td>Claude — excellent at SQL and clear explanations.</td>
+            <td><a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Get a key ↗</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="s-sub" style="margin-top:14px;font-size:.9rem">Paste the key in <b>Settings → AI Provider</b>, pick your model, and you're chatting with your data. Switch providers anytime.</p>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download" class="s-section s-alt">
+  <div class="wrap s-download">
+    <h2 class="s-h2">Download PounceSQL</h2>
+    <p class="s-sub">Free, native, and notarized for macOS 13+ (Apple Silicon).</p>
+    <div class="s-dl-cards">
+      <div class="s-card">
+        <h3>Homebrew</h3>
+        <div class="brew"><code>brew trust pounceapps/tap<br>brew install --cask pounceapps/tap/pouncesql</code></div>
+        <p>Recommended — stays current with <code>brew upgrade</code>. Homebrew 6.0+ needs the one-time <code>brew trust</code> for third-party taps.</p>
+      </div>
+      <div class="s-card">
+        <h3>Direct download</h3>
+        <a class="btn btn-primary" href="https://github.com/pounceapps/downloads/releases">Latest release (.dmg)</a>
+        <p>Open the DMG and drag PounceSQL to Applications.</p>
+      </div>
+    </div>
+    <p class="s-fine"><b>Good to know:</b> the AI assistant and MCP tools are <b>read-only by default</b>. AI can be
+      wrong — review generated SQL before running, and try a non-production database first. Provided as is.
+      Azure SQL uses your <code>az login</code> session — see the <a href="azure-help.html?build=brew">Azure sign-in help</a>.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span> — a native macOS SQL client.</span>
+    <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/orgs/pounceapps/discussions">Help &amp; Discussions</a> · <a href="https://github.com/pounceapps/pouncesql">GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learn SQL free — PounceSQL</title>
+  <meta name="description" content="Learn SQL hands-on with PounceSQL: free built-in sample databases (Star Wars, Pokémon, World countries, and more) you load with one click, plus how to get free AI with Ollama or Google Gemini." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" style="text-decoration:none"><span class="brand"><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#ai">AI</a>
+      <a href="learn.html" class="active">Learn SQL</a>
+      <a href="whatsnew.html">What's New</a>
+      <a href="docs.html">Docs</a>
+      <a href="index.html#download" class="nav-cta">Download</a>
+    </nav>
+  </div>
+</header>
+
+<!-- LEARNING DASHBOARD -->
+<section class="ldash-wrap">
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="ldash-head">
+      <div>
+        <div class="s-eyebrow"><span class="s-free">FREE</span> · Learn by doing</div>
+        <h1 class="ldash-title">Learn SQL on data you'll <span class="accent">actually enjoy</span>.</h1>
+      </div>
+      <div class="ldash-kpis">
+        <div class="ldash-kpi"><b>6</b><span>databases</span></div>
+        <div class="ldash-kpi"><b>6</b><span>lessons</span></div>
+        <div class="ldash-kpi"><b>$0</b><span>forever</span></div>
+        <div class="ldash-kpi"><b>4</b><span>SQL engines</span></div>
+      </div>
+    </div>
+
+    <!-- dashboard shell -->
+    <div class="ldash">
+      <aside class="ldash-side">
+        <nav class="ldash-nav">
+          <a href="#databases" data-p="databases" class="active"><span>📀</span> Databases</a>
+          <a href="#start" data-p="start"><span>🚀</span> Get started</a>
+          <a href="#ai" data-p="ai"><span>🤖</span> Free AI</a>
+          <a href="#lessons" data-p="lessons"><span>🎓</span> Lessons</a>
+          <a href="#help" data-p="help"><span>💬</span> Get help</a>
+        </nav>
+        <div class="ldash-side-cta">
+          <a class="btn btn-primary btn-block" href="index.html#download">Get PounceSQL</a>
+          <a class="ldash-repo" href="https://github.com/pounceapps/sample-databases" target="_blank" rel="noopener">Sample-databases repo ↗</a>
+        </div>
+      </aside>
+
+      <div class="ldash-main">
+
+        <!-- DATABASES -->
+        <div class="ldash-panel active" id="p-databases">
+          <div class="ldash-panel-head">
+            <h2>Pick a world to explore.</h2>
+            <p>Load any with one click in <b>Settings → Learn SQL</b>, or grab the raw files from the
+              <a href="https://github.com/pounceapps/sample-databases" target="_blank" rel="noopener">public repo</a> — credits &amp; example queries included.</p>
+          </div>
+          <div class="ldash-cards">
+
+            <div class="s-card">
+              <h3>⭐ Star Wars</h3>
+              <p><b>61 planets</b> and <b>87 characters</b>, linked by a foreign key — perfect for learning <b>JOINs</b>.
+                <br><i>"Which characters are from Tatooine?"</i></p>
+              <p><a class="s-dl-link" href="https://github.com/pounceapps/sample-databases/raw/main/starwars.db">starwars.db ↓</a></p>
+              <p class="s-credit">Data from <a href="https://github.com/alexisrolland/star-wars-data" target="_blank" rel="noopener">alexisrolland/star-wars-data</a> (SWAPI). Inspired by
+                <a href="https://www.cockroachlabs.com/blog/star-wars-sql/" target="_blank" rel="noopener">Cockroach Labs</a> and the
+                <a href="https://cran.r-project.org/web/packages/starwarsdb/" target="_blank" rel="noopener">starwarsdb</a> R package.</p>
+            </div>
+
+            <div class="s-card">
+              <h3>⚡ Pokémon</h3>
+              <p>All <b>800 Pokémon</b> with types and battle stats — great for <b>SELECT</b>, <b>WHERE</b>, <b>ORDER&nbsp;BY</b>,
+                and aggregates. <br><i>"Show the strongest Water types."</i></p>
+              <p><a class="s-dl-link" href="https://github.com/pounceapps/sample-databases/raw/main/pokemon.db">pokemon.db ↓</a></p>
+              <p class="s-credit">The classic Kaggle Pokémon dataset. Learning ideas from
+                <a href="https://github.com/TempeHS/Learn_SQL_Basics" target="_blank" rel="noopener">TempeHS</a>,
+                <a href="https://yi-zheng1709.medium.com/sql-basics-lets-play-with-pok%C3%A9mon-data-d81709c9d7ae" target="_blank" rel="noopener">Yi Zheng</a>, and
+                <a href="https://github.com/lucvalsal/pokemon-database" target="_blank" rel="noopener">lucvalsal</a>.</p>
+            </div>
+
+            <div class="s-card">
+              <h3>🎵 Music store</h3>
+              <p>A full digital music store — <b>customers, invoices, tracks, albums and artists</b> across <b>11 tables</b>.
+                Great for complex <b>joins</b> and <b>subqueries</b>. Loaded by default. <br><i>"Which artist earned the most revenue?"</i></p>
+              <p><a class="s-dl-link" href="https://github.com/pounceapps/sample-databases/raw/main/chinook.db">chinook.db ↓</a></p>
+              <p class="s-credit">The <a href="https://github.com/lerocha/chinook-database" target="_blank" rel="noopener">Chinook</a>
+                sample database (MIT licensed).</p>
+            </div>
+
+            <div class="s-card">
+              <h3>🌍 World countries</h3>
+              <p>All <b>250 countries</b> with <b>population, GDP, area, capital, region</b> and languages — the perfect
+                playground for <b>GROUP&nbsp;BY</b> and aggregates. <br><i>"Rank continents by total population."</i></p>
+              <p><a class="s-dl-link" href="https://github.com/pounceapps/sample-databases/raw/main/countries.db">countries.db ↓</a></p>
+              <p class="s-credit">Country data from <a href="https://github.com/mledoze/countries" target="_blank" rel="noopener">mledoze/countries</a> (MIT);
+                population &amp; GDP from the <a href="https://data.worldbank.org" target="_blank" rel="noopener">World Bank</a> (CC&nbsp;BY&nbsp;4.0).</p>
+            </div>
+
+            <div class="s-card">
+              <h3>🏅 Olympic medals</h3>
+              <p>Medal counts by <b>country, sport, year and type</b> from <b>1896–2016</b>, plus a country lookup table.
+                Superb for <b>joins</b> and <b>trend charts</b>. <br><i>"Chart USA golds by year."</i></p>
+              <p><a class="s-dl-link" href="https://github.com/pounceapps/sample-databases/raw/main/olympics.db">olympics.db ↓</a>
+                &nbsp;·&nbsp; <a class="s-dl-link" href="https://github.com/pounceapps/sample-databases/raw/main/olympics-detailed.db">per-medal detail ↓</a></p>
+              <p class="s-credit">From the <a href="https://github.com/rgriff23/Olympic_history" target="_blank" rel="noopener">120 years of Olympic history</a>
+                dataset (originally compiled by <a href="https://www.sports-reference.com" target="_blank" rel="noopener">Sports Reference</a>).</p>
+            </div>
+
+            <div class="s-card">
+              <h3>🦸 Marvel &amp; DC</h3>
+              <p><b>23,000+ comic characters</b> with alignment, appearances and first appearance — compare
+                <b>Marvel vs DC</b> with <b>GROUP&nbsp;BY</b> and filters. <br><i>"Who has the most appearances?"</i></p>
+              <p><a class="s-dl-link" href="https://github.com/pounceapps/sample-databases/raw/main/comics.db">comics.db ↓</a></p>
+              <p class="s-credit">FiveThirtyEight's <a href="https://github.com/fivethirtyeight/data/tree/master/comic-characters" target="_blank" rel="noopener">comic-characters</a>
+                data (CC&nbsp;BY&nbsp;4.0), from the Marvel &amp; DC wikis.</p>
+            </div>
+
+          </div>
+          <p class="ldash-foot">More on the way. Want one, or have data to share? <a href="https://github.com/pounceapps/sample-databases/discussions" target="_blank" rel="noopener">Join the discussion →</a></p>
+        </div>
+
+        <!-- GET STARTED -->
+        <div class="ldash-panel" id="p-start">
+          <div class="ldash-panel-head">
+            <h2>Load a database in one click.</h2>
+            <p>No files to move, no setup — everything installs into <code>~/Documents/pouncesql/learn</code> and pins to your tree.</p>
+          </div>
+          <figure class="s-shot" style="margin-bottom:24px">
+            <img src="screenshots/learn-dashboard.png" loading="lazy" alt="PounceSQL's Settings → Learn SQL dashboard: a summary of datasets, and cards for Star Wars, Pokémon, Music store, World countries, Olympic medals and Marvel & DC, each with a one-click Load, Remove or Download button." />
+          </figure>
+          <ol class="s-steps">
+            <li>Open <b>Settings → Learn SQL</b>.</li>
+            <li>Click <b>Load</b> next to any database — it installs (downloading first if needed) and appears in your tree.</li>
+            <li>Expand it to see the tables — or just ask the AI: <i>"what's in this database?"</i></li>
+            <li>Done exploring? Click <b>Remove</b> to hide it; reload it any time.</li>
+          </ol>
+          <p class="s-sub" style="font-size:.92rem;margin-top:22px">Prefer to do it by hand? Download a <code>.db</code> from the Databases tab, then use <b>Add → SQLite → Browse…</b> in the tree.
+            Tip: right-click any table to preview rows, count them, or generate a starter query.</p>
+        </div>
+
+        <!-- FREE AI -->
+        <div class="ldash-panel" id="p-ai">
+          <div class="ldash-panel-head">
+            <h2>Turn on the assistant for $0.</h2>
+            <p>The AI is optional and off until you add a provider. Both of these are free.</p>
+          </div>
+          <div class="ldash-ai">
+            <div class="ldash-ai-col">
+              <h3>🟢 Google Gemini <span>free tier</span></h3>
+              <ol class="s-steps">
+                <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in.</li>
+                <li>Click <b>Create API key</b> and copy it.</li>
+                <li>In PounceSQL: <b>Settings → AI Provider → Google</b>, paste the key.</li>
+                <li>Pick <code>gemini-2.5-flash</code> and start chatting. Free-tier limits are generous for learning.</li>
+              </ol>
+            </div>
+            <div class="ldash-ai-col">
+              <h3>🔒 Ollama <span>100% local</span></h3>
+              <ol class="s-steps">
+                <li>Install <a href="https://ollama.com/download" target="_blank" rel="noopener">Ollama</a> (or <code>brew install ollama</code>).</li>
+                <li>Pull a coding-tuned model: <code>ollama pull qwen2.5-coder</code></li>
+                <li>In PounceSQL: <b>Settings → AI Provider → Ollama</b>, endpoint <code>http://localhost:11434</code>.</li>
+                <li>Load the model list, pick your model — nothing ever leaves your Mac.</li>
+              </ol>
+            </div>
+          </div>
+          <p class="s-sub" style="font-size:.92rem;margin-top:18px">Prefer the big models? A few dollars of <a href="index.html#providers">OpenAI or Anthropic</a> credits go a long way.</p>
+        </div>
+
+        <!-- LESSONS -->
+        <div class="ldash-panel" id="p-lessons">
+          <div class="ldash-panel-head">
+            <h2>From your first query to charts.</h2>
+            <p>Paste each query into the editor and hit <b>Run</b> (⌘↵), or ask the AI. Work top to bottom — every lesson builds on the last.</p>
+          </div>
+          <ol class="s-lessons">
+            <li class="s-lesson">
+              <div class="s-lesson-h"><span class="s-lesson-n">1</span><h3>Your first query</h3><span class="s-lesson-db">pokemon.db</span></div>
+              <p><b>SELECT</b> chooses columns, <b>WHERE</b> filters rows, <b>ORDER BY</b> sorts, <b>LIMIT</b> caps the count. Find the ten hardest-hitting Fire types:</p>
+              <pre class="s-code">SELECT name, type1, attack
+FROM pokemon
+WHERE type1 = 'Fire'
+ORDER BY attack DESC
+LIMIT 10;</pre>
+              <p class="s-try">Try next: change <code>'Fire'</code> to <code>'Water'</code>, or sort by <code>speed</code>.</p>
+            </li>
+
+            <li class="s-lesson">
+              <div class="s-lesson-h"><span class="s-lesson-n">2</span><h3>Count &amp; group</h3><span class="s-lesson-db">pokemon.db</span></div>
+              <p>Aggregate functions summarise many rows. <b>GROUP BY</b> makes one row per group — here, per type — with a count and an average:</p>
+              <pre class="s-code">SELECT type1,
+       COUNT(*)            AS count,
+       ROUND(AVG(total), 0) AS avg_power
+FROM pokemon
+GROUP BY type1
+ORDER BY count DESC;</pre>
+              <p class="s-try">Try next: add <code>HAVING COUNT(*) &gt; 40</code> to keep only the common types.</p>
+            </li>
+
+            <li class="s-lesson">
+              <div class="s-lesson-h"><span class="s-lesson-n">3</span><h3>Join two tables</h3><span class="s-lesson-db">starwars.db</span></div>
+              <p>Real data lives in linked tables. A <b>JOIN</b> follows the foreign key — each character's <code>planet_id</code> points at a planet:</p>
+              <pre class="s-code">SELECT people.name, planet.name AS homeworld
+FROM people
+JOIN planet ON people.planet_id = planet.id
+WHERE planet.name = 'Tatooine';</pre>
+              <p class="s-try">Try next: swap in <code>'Naboo'</code>, or add <code>people.height</code> and sort by it.</p>
+            </li>
+
+            <li class="s-lesson">
+              <div class="s-lesson-h"><span class="s-lesson-n">4</span><h3>Let the AI write it</h3><span class="s-lesson-db">any database · AI</span></div>
+              <p>Don't know the syntax yet? Type the question in the <b>AI Assistant</b> and it writes engine-correct SQL you can read, tweak, and run with <b>Use&nbsp;in&nbsp;editor</b>:</p>
+              <pre class="s-code s-prompt">Ask: “Which homeworld has produced the most characters?”</pre>
+              <p class="s-try">Read the JOIN + GROUP BY it generates — that's lesson 2 and 3 combined. Then ask it <i>"explain that query."</i></p>
+            </li>
+
+            <li class="s-lesson">
+              <div class="s-lesson-h"><span class="s-lesson-n">5</span><h3>See it as a chart</h3><span class="s-lesson-db">any database · AI</span></div>
+              <p>Numbers are easier to grasp as pictures. Ask for a chart and PounceSQL renders it inline — then export it as PNG:</p>
+              <pre class="s-code s-prompt">Ask: “Chart the average attack by Pokémon type.”</pre>
+              <p class="s-try">Also try: <i>"give me the KPIs for this database"</i> for a dashboard of headline numbers.</p>
+            </li>
+
+            <li class="s-lesson">
+              <div class="s-lesson-h"><span class="s-lesson-n">6</span><h3>Map the whole schema</h3><span class="s-lesson-db">any database · AI</span></div>
+              <p>New database? Get the lay of the land instantly — the AI draws an entity-relationship diagram of the tables and how they connect:</p>
+              <pre class="s-code s-prompt">Ask: “Diagram the relationships in this database.”</pre>
+              <p class="s-try">Now you can see which columns to JOIN on before you write a line of SQL.</p>
+            </li>
+          </ol>
+        </div>
+
+        <!-- GET HELP -->
+        <div class="ldash-panel" id="p-help">
+          <div class="ldash-panel-head">
+            <h2>Stuck? Here's where to look.</h2>
+            <p>Everything you need to keep learning — guides, answers, and people who can help.</p>
+          </div>
+          <div class="ldash-help-grid">
+            <a class="ldash-help" href="docs.html">
+              <span class="lh-ico">📘</span>
+              <span class="lh-t"><b>Full documentation</b><span>Connecting, querying, AI, MCP — the complete guide.</span></span>
+            </a>
+            <a class="ldash-help" href="#start" data-jump="start">
+              <span class="lh-ico">🚀</span>
+              <span class="lh-t"><b>Getting started</b><span>Load your first database and run a query.</span></span>
+            </a>
+            <a class="ldash-help" href="#lessons" data-jump="lessons">
+              <span class="lh-ico">🎓</span>
+              <span class="lh-t"><b>Hands-on lessons</b><span>First query → joins → AI → charts, step by step.</span></span>
+            </a>
+            <a class="ldash-help" href="#ai" data-jump="ai">
+              <span class="lh-ico">🤖</span>
+              <span class="lh-t"><b>Turn on AI for free</b><span>Google Gemini or a local Ollama model.</span></span>
+            </a>
+            <a class="ldash-help" href="azure-help.html?build=brew">
+              <span class="lh-ico">☁️</span>
+              <span class="lh-t"><b>Azure sign-in help</b><span>Connect Azure SQL with your <code>az login</code> session.</span></span>
+            </a>
+            <a class="ldash-help" href="https://github.com/orgs/pounceapps/discussions" target="_blank" rel="noopener">
+              <span class="lh-ico">💬</span>
+              <span class="lh-t"><b>Ask the community</b><span>Questions, ideas, and dataset requests in Discussions.</span></span>
+            </a>
+            <a class="ldash-help" href="https://github.com/pounceapps/sample-databases" target="_blank" rel="noopener">
+              <span class="lh-ico">📦</span>
+              <span class="lh-t"><b>Sample-databases repo</b><span>Raw files, schemas, credits and example queries.</span></span>
+            </a>
+            <a class="ldash-help" href="whatsnew.html">
+              <span class="lh-ico">✨</span>
+              <span class="lh-t"><b>What's new</b><span>Latest features and how to update.</span></span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.ldash-nav a'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.ldash-panel'));
+    var ids = items.map(function (a) { return a.dataset.p; });
+    function show(id) {
+      if (ids.indexOf(id) < 0) id = 'databases';
+      items.forEach(function (a) { a.classList.toggle('active', a.dataset.p === id); });
+      panels.forEach(function (p) { p.classList.toggle('active', p.id === 'p-' + id); });
+      if (history.replaceState) history.replaceState(null, '', '#' + id);
+    }
+    function goTo(id) {
+      show(id);
+      var top = document.querySelector('.ldash').getBoundingClientRect().top + window.scrollY - 76;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+    items.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        show(a.dataset.p);
+        var top = document.querySelector('.ldash').getBoundingClientRect().top + window.scrollY - 76;
+        if (window.scrollY > top) window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
+    // In-panel "jump" links (e.g. from the Get-help panel) switch panels too.
+    document.querySelectorAll('[data-jump]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); goTo(a.dataset.jump); });
+    });
+    show((location.hash || '').replace('#', ''));
+  })();
+</script>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span> — a native macOS SQL client.</span>
+    <span><a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/orgs/pounceapps/discussions">Help</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

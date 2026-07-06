@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — PounceSQL</title>
+  <meta name="description" content="PounceSQL privacy policy. PounceSQL is a local-first native macOS app: no accounts, no analytics, no telemetry. Your data stays on your Mac." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" style="text-decoration:none"><span class="brand"><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://github.com/orgs/pounceapps/discussions">Help</a>
+      <a href="index.html#download" class="nav-cta">Download</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:24px">
+  <div class="wrap" style="max-width:820px">
+    <h1 style="font-size:2.2rem">Privacy Policy</h1>
+    <p class="lede" style="max-width:70ch">PounceSQL is <b>local-first</b>. It runs entirely on your Mac. There are no accounts, no
+      analytics, no telemetry, and no PounceApps server that your data passes through.</p>
+    <p class="hero-note">Last updated: 4 July 2026</p>
+  </div>
+</section>
+
+<section class="features2"><div class="wrap" style="max-width:820px">
+  <div class="feat" style="margin-bottom:18px">
+    <h3>What we collect</h3>
+    <p><b>Nothing.</b> PounceApps does not operate any server that receives your data. We do not collect personal
+      information, usage analytics, crash telemetry, or a device identifier. There is no sign-in.</p>
+  </div>
+  <div class="feat" style="margin-bottom:18px">
+    <h3>Your databases &amp; credentials</h3>
+    <p>Connections you create stay on your Mac. Database credentials and AI API keys are stored in the
+      <b>macOS Keychain</b>. Azure SQL uses your local <code>az login</code> session — no passwords are stored by
+      PounceSQL. Your queries and results are processed locally and are never sent to us.</p>
+  </div>
+  <div class="feat" style="margin-bottom:18px">
+    <h3>The AI assistant</h3>
+    <p>The AI assistant is optional and off until you configure a provider. When you send a message, your prompt
+      and the relevant context (such as your schema and query text) are sent <b>directly to the AI provider you
+      choose</b> — OpenAI, Anthropic, your organization's AI gateway, or a fully local model via Ollama. That data
+      is handled under <b>that provider's</b> privacy policy. With a local Ollama model, nothing leaves your machine.
+      PounceApps does not proxy, log, or store these requests. The assistant and the built-in MCP tools are
+      <b>read-only by default</b>.</p>
+  </div>
+  <div class="feat" style="margin-bottom:18px">
+    <h3>The built-in MCP server</h3>
+    <p>PounceSQL's Model Context Protocol server listens on your local machine (localhost) so agents you run
+      locally, like Claude Code, can drive the app. It is not exposed to the internet by PounceSQL.</p>
+  </div>
+  <div class="feat" style="margin-bottom:18px">
+    <h3>Children</h3>
+    <p>PounceSQL is a developer tool and is not directed to children under 13.</p>
+  </div>
+  <div class="feat" style="margin-bottom:18px">
+    <h3>Changes &amp; contact</h3>
+    <p>If this policy changes, we'll update this page and its date. Questions? Reach us through
+      <a href="https://github.com/orgs/pounceapps/discussions">GitHub Discussions</a>.</p>
+  </div>
+  <p class="dl-note dl-disclaimer" style="margin-top:8px">PounceSQL is free software provided <b>“as is”</b>, without warranty of any kind.</p>
+</div></section>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span> — a native macOS SQL client.</span>
+    <span>
+      <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> ·
+      <a href="https://github.com/orgs/pounceapps/discussions">Help &amp; Discussions</a> ·
+      <a href="https://github.com/pounceapps/pouncesql">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

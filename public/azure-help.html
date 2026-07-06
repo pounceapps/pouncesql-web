@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connecting to Azure SQL — PounceSQL</title>
+  <meta name="description" content="Step-by-step help for connecting PounceSQL to Azure SQL: sign-in, choosing your directory, the server firewall, and fixing the common Microsoft Entra errors." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .ah-steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 8px; }
+    .ah-steps > li { position: relative; padding: 4px 0 12px 40px; }
+    .ah-steps > li::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 2px;
+      width: 26px; height: 26px; border-radius: 50%; background: var(--accent, #2a6df4); color: #fff;
+      font: 600 13px/26px var(--font-ui, system-ui); text-align: center; }
+    .ah-err { font-weight: 700; }
+    .ah-fix { margin: 6px 0 0; }
+    code { background: rgba(127,127,127,.14); padding: 1px 5px; border-radius: 4px; }
+    .feat h3 { margin-top: 0; }
+    .ah-mock { border: 1px solid rgba(127,127,127,.3); border-radius: 8px; overflow: hidden; margin: 12px 0; font: 13px var(--font-ui, system-ui); }
+    .ah-mock-head, .ah-mock-row { display: grid; grid-template-columns: 1.2fr 1.7fr 1fr; gap: 10px; padding: 9px 12px; align-items: center; }
+    .ah-mock-head { background: rgba(127,127,127,.12); font-weight: 600; }
+    .ah-mock-row { border-top: 1px solid rgba(127,127,127,.2); }
+    .ah-mock-hl { background: rgba(42,109,244,.16); border-radius: 4px; padding: 2px 6px; font-weight: 600; }
+    @media (max-width:600px){ .ah-mock-head{ display:none } .ah-mock-row{ grid-template-columns:1fr; gap:3px } }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" style="text-decoration:none"><span class="brand"><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://github.com/orgs/pounceapps/discussions">Help</a>
+      <a href="index.html#download" class="nav-cta">Download</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:20px">
+  <div class="wrap" style="max-width:820px">
+    <h1 style="font-size:2.2rem">Connecting to Azure SQL</h1>
+    <p class="lede" style="max-width:70ch">PounceSQL signs in to Azure SQL with your Microsoft account. Sign-in is
+      handled by Microsoft — the app only receives a short-lived token and never sees your password. Here's the normal
+      flow, then fixes for the exact messages you might hit.</p>
+  </div>
+</section>
+
+<section class="features2"><div class="wrap" style="max-width:820px">
+
+  <div class="feat" style="margin-bottom:22px">
+    <h3>The normal flow</h3>
+    <ol class="ah-steps">
+      <li><b>Add Database → Azure SQL → Sign in to Azure.</b> A Microsoft window opens.</li>
+      <li><b>Sign in with your account's primary email</b> (the address you actually use for Microsoft — not an alias).</li>
+      <li><b>Pick your directory.</b> PounceSQL lists the directories your account can access, by name. Choose the one that holds your server.</li>
+      <li><b>Pick the subscription, then the server, then the database</b>, and add it to the tree.</li>
+      <li><b>The first connection may need your IP allowed</b> on the server firewall — see below. This is the most common thing to trip on.</li>
+    </ol>
+  </div>
+
+  <div class="feat" id="find-directory" style="margin-bottom:22px">
+    <h3>Sign in to a specific directory (guest / personal accounts)</h3>
+    <p>If sign-in guesses the wrong directory — common when your account is a <b>guest</b> in an organization, or a
+      personal Microsoft account — you can tell PounceSQL exactly which one to use. In the Azure step, open
+      <b>Advanced → sign in to a specific directory</b> and paste your directory's <b>domain</b>.</p>
+    <p>To find it, open <a href="https://portal.azure.com/#settings/directory">Azure portal → Settings →
+      Directories + subscriptions</a>. Your directories are listed with a <b>Domain</b> and a <b>Directory ID</b> —
+      copy the <b>Domain</b> (it's easier to read than the ID):</p>
+    <div class="ah-mock" aria-label="Example of the Azure portal directories list">
+      <div class="ah-mock-head"><span>Directory name</span><span>Domain</span><span>Directory ID</span></div>
+      <div class="ah-mock-row">
+        <span>Default Directory</span>
+        <span class="ah-mock-hl">yourname.onmicrosoft.com&nbsp;← copy this</span>
+        <span style="opacity:.6">7c9c…-719a</span>
+      </div>
+    </div>
+    <p class="ah-fix">Paste that domain (e.g. <code>yourname.onmicrosoft.com</code>) into the Advanced box and sign in.
+      The Directory ID (the long GUID) works too — the domain is just friendlier. If you own that directory, you can
+      approve the app right there in the sign-in window.</p>
+  </div>
+
+  <div class="feat" style="margin-bottom:22px">
+    <h3>🔥 "Client with IP address … is not allowed to access the server"</h3>
+    <p>This is the big one, and it means sign-in <b>worked</b> — the server's firewall is just blocking your network.
+      Azure SQL only accepts connections from IP addresses you've allowed. To fix it:</p>
+    <ol class="ah-steps">
+      <li>Note the IP address in the error message (it's your current public IP).</li>
+      <li>Go to the <a href="https://portal.azure.com">Azure portal</a> → your <b>SQL server</b> (not the database) → <b>Networking</b> (older portals: "Firewall and virtual networks").</li>
+      <li>Under <b>Firewall rules</b>, click <b>"Add your client IPv4 address,"</b> or add a rule with that IP as both start and end.</li>
+      <li>Click <b>Save</b>. It can take <b>up to ~5 minutes</b> to take effect.</li>
+      <li>Back in PounceSQL, click <b>Test Connection</b> again.</li>
+    </ol>
+    <p class="ah-fix">If you switch networks (office ↔ home ↔ VPN) your IP changes, so you may need to add the new one.</p>
+  </div>
+
+  <div class="feat" style="margin-bottom:22px">
+    <h3>"Database is not currently available" / first connection times out</h3>
+    <p class="ah-fix"><b>Serverless</b> Azure SQL databases auto-pause when idle. The first connection wakes it, which
+      takes ~30–60 seconds — so the very first attempt can time out. <b>Wait a moment and try again</b> once it's awake.</p>
+  </div>
+
+  <div class="feat" style="margin-bottom:22px">
+    <h3>"&lt;something&gt; isn't in our system" at sign-in</h3>
+    <p class="ah-fix">Microsoft only accepts your account's <b>primary sign-in address</b>, not an alias. If your
+      Microsoft account has several email aliases, use the original one. Not sure which it is? Check it at
+      <a href="https://account.microsoft.com">account.microsoft.com</a> → Your info.</p>
+  </div>
+
+  <div class="feat" style="margin-bottom:22px">
+    <h3>"Need admin approval"</h3>
+    <p class="ah-fix">Your organization requires an administrator to approve apps before members can use them — this is
+      an org policy set by your IT department, not something the app controls. Ask your admin to approve PounceSQL, or
+      use an account whose directory allows it. If it's a work database, your DBA / IT team can grant access.</p>
+  </div>
+
+  <div class="feat" style="margin-bottom:22px">
+    <h3>The sign-in window doesn't finish, or you picked the wrong account</h3>
+    <p class="ah-fix">Just click <b>Sign in to Azure</b> again — it cancels the previous attempt and opens a fresh
+      window so you can choose a different account.</p>
+  </div>
+
+  <div class="feat" style="margin-bottom:22px">
+    <h3>Personal or guest accounts</h3>
+    <p class="ah-fix">A personal Microsoft account, or one that's a <b>guest</b> in someone else's directory, is routed
+      differently by Microsoft and may not complete in-app sign-in. Using a work/school account that's a native member
+      of the directory — or having that directory's admin grant you access — is the reliable route.</p>
+  </div>
+
+  <!-- Shown only to the direct-download build (?build=brew); the App Store page
+       must not steer users to an external download. -->
+  <div class="feat" id="brew-only" style="margin-bottom:22px; display:none">
+    <h3>Prefer the Azure CLI?</h3>
+    <p class="ah-fix">The direct-download build authenticates with your <code>az login</code> session. Because it uses
+      Microsoft's Azure CLI, it handles cases in-app sign-in can't — personal and guest accounts, and organizations
+      that gate apps. Run <code>az login</code> in Terminal, then connect in PounceSQL.</p>
+  </div>
+
+  <div class="feat" style="margin-bottom:8px">
+    <h3>Still stuck?</h3>
+    <p class="ah-fix">Post in <a href="https://github.com/orgs/pounceapps/discussions">GitHub Discussions</a> with the
+      exact error text — the Trace ID / Correlation ID in Azure errors helps a lot. Happy to help you get connected.</p>
+  </div>
+
+</div></section>
+
+<footer class="foot"><div class="wrap">
+  <p>PounceSQL is a native macOS SQL client. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> ·
+    <a href="https://github.com/orgs/pounceapps/discussions">Help</a></p>
+</div></footer>
+
+<script>
+  if (new URLSearchParams(location.search).get('build') === 'brew') {
+    var el = document.getElementById('brew-only'); if (el) el.style.display = '';
+  }
+</script>
+
+</body>
+</html>

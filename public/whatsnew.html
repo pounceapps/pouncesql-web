@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What's New — PounceSQL</title>
+  <meta name="description" content="PounceSQL release notes and changelog — what's new in each version of the free native macOS SQL client for Azure SQL, SQL Server, PostgreSQL and SQLite." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" style="text-decoration:none"><span class="brand"><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#ai">AI</a>
+      <a href="learn.html">Learn SQL</a>
+      <a href="whatsnew.html" class="active">What's New</a>
+      <a href="docs.html">Docs</a>
+      <a href="index.html#download" class="nav-cta">Download</a>
+    </nav>
+  </div>
+</header>
+
+<section class="s-section">
+  <div class="wrap wn-page">
+
+    <div class="wn-head">
+      <div class="s-eyebrow">Release notes</div>
+      <h1 class="s-h1">What's New in PounceSQL</h1>
+      <p class="s-sub">Every release, newest first. PounceSQL updates through Homebrew — <code>brew upgrade --cask pouncesql</code> keeps you current.</p>
+    </div>
+
+    <div class="wn-install">
+      <div>
+        <b>Install or update</b>
+        <p>Homebrew (recommended — stays current):</p>
+      </div>
+      <code>brew trust pounceapps/tap<br>brew install --cask pounceapps/tap/pouncesql</code>
+    </div>
+
+    <figure class="s-shot" style="margin-bottom:34px">
+      <img src="screenshots/whatsnew.png" loading="lazy" alt="PounceSQL's in-app What's New screen showing an 'up to date' banner and the v0.3.110 release notes." />
+    </figure>
+
+    <!-- Releases (mirror core/whatsnew.go; add newest at the top each release). -->
+    <ol class="wn-releases">
+
+      <li class="wn-rel wn-latest">
+        <div class="wn-rel-head"><span class="wn-rel-ver">v0.3.110</span><span class="wn-rel-date">2026-07-05</span><span class="wn-rel-tag">Latest</span></div>
+        <ul class="wn-rel-notes">
+          <li><b>New home under pounceapps.</b> Installed with the old Homebrew tap? Re-tap to keep getting updates: <code>brew untap senzalldev/tap</code>, then <code>brew trust pounceapps/tap</code> and <code>brew install --cask pounceapps/tap/pouncesql</code>.</li>
+          <li>After updating, macOS may ask once to allow PounceSQL to use its keychain item — click <b>Always Allow</b>. Your saved connections and settings are unchanged.</li>
+          <li><b>Redesigned Learn SQL</b> — a dashboard with a summary, one-click Load / Restore / Download for every practice database, and quick links to guides.</li>
+          <li>What's New now shows whether you're up to date, with the exact upgrade command.</li>
+          <li>Azure sign-in on the Homebrew build now opens Terminal for <code>az login</code> instead of doing nothing when you're not signed in.</li>
+          <li>Fixed in-app update checks — they now point at the current release feed.</li>
+        </ul>
+      </li>
+
+      <li class="wn-rel">
+        <div class="wn-rel-head"><span class="wn-rel-ver">v0.3.106</span><span class="wn-rel-date">2026-07-05</span></div>
+        <ul class="wn-rel-notes">
+          <li>Learn SQL: load Star Wars, Pokémon, Music store, World countries, Olympic medals, and Marvel &amp; DC characters with one click. Core sets are built in; larger ones download on demand.</li>
+          <li>PounceSQL now ships with the full Music store loaded by default (instead of a tiny demo); remove or reload it like any other sample.</li>
+          <li>New World countries, Olympic medals (1896–2016), and Marvel &amp; DC datasets — great for GROUP BY, aggregates and trend charts.</li>
+          <li>All sample databases are free to browse and download at <a href="https://github.com/pounceapps/sample-databases" target="_blank" rel="noopener">github.com/pounceapps/sample-databases</a>.</li>
+          <li>AI providers are now one simple list — OpenAI, Anthropic, Google, Ollama, and custom — each with its own saved settings and model.</li>
+          <li>Softer light theme, per-directory Azure sign-in, and a reset-to-defaults button for editor and tool settings.</li>
+        </ul>
+      </li>
+
+      <li class="wn-rel">
+        <div class="wn-rel-head"><span class="wn-rel-ver">v0.3.99</span><span class="wn-rel-date">2026-06-30</span></div>
+        <ul class="wn-rel-notes">
+          <li>Connect any AI provider: OpenAI, Anthropic, Ollama (local/free), or a custom gateway — with per-provider profiles and a quick model switcher.</li>
+          <li>Richer AI chat: Mermaid diagrams, charts, heatmaps, KPIs, LaTeX, and Markdown, plus chat history and token stats.</li>
+          <li>On-prem SQL Server support (2017–2025) via a guided connection wizard.</li>
+        </ul>
+      </li>
+
+    </ol>
+
+    <p class="wn-foot">Older releases are on the <a href="https://github.com/pounceapps/downloads/releases" target="_blank" rel="noopener">GitHub releases page</a>.</p>
+
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span><span class="brand-pounce">Pounce</span><span class="brand-sql">SQL</span> — a native macOS SQL client.</span>
+    <span><a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/orgs/pounceapps/discussions">Help</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
