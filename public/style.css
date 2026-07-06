@@ -499,3 +499,8 @@ pre.copyable{ padding-right:74px; }
 .copy-btn:hover{ color:#3CF500; border-color:rgba(60,245,0,.6); background:rgba(60,245,0,.08); }
 .copy-btn.copied{ color:#04140a; background:#3CF500; border-color:#3CF500; }
 @media(max-width:600px){ .copy-btn{ font-size:9px; padding:3px 7px; } }
+
+/* Commands stay on one line (scroll if long) — never wrap ambiguously */
+.brew code{ white-space:pre; overflow-x:auto; max-width:100%; }
+.wn-install code{ white-space:pre; overflow-x:auto; max-width:100%; }
+@media (max-width:640px){ .wn-install code{ white-space:pre; word-break:normal; } }
