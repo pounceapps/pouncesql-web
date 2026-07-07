@@ -48,7 +48,17 @@
     <ol class="wn-releases">
 
       <li class="wn-rel wn-latest">
-        <div class="wn-rel-head"><span class="wn-rel-ver">v0.3.110</span><span class="wn-rel-date">2026-07-05</span><span class="wn-rel-tag">Latest</span></div>
+        <div class="wn-rel-head"><span class="wn-rel-ver">v0.3.111</span><span class="wn-rel-date">2026-07-07</span><span class="wn-rel-tag">Latest</span></div>
+        <ul class="wn-rel-notes">
+          <li><b>New Options menu</b> in the menu bar — Add Database, Show / Hide Databases, Settings, Get Started, What's New, and About, all in one place.</li>
+          <li><b>Copy anywhere</b> — a Copy button on the Results, Tools, and Logging panels (results copy as TSV, ready for a spreadsheet), plus a copy button on every AI chat message.</li>
+          <li><b>New Get Started tab</b> walks you through adding a database, configuring the AI, learning SQL, and running your first query.</li>
+          <li><b>Fixed PostgreSQL connections</b> to servers without TLS (local / dev) — the default now prefers TLS and falls back to plaintext instead of failing. Use the Encrypt option for strict TLS.</li>
+        </ul>
+      </li>
+
+      <li class="wn-rel">
+        <div class="wn-rel-head"><span class="wn-rel-ver">v0.3.110</span><span class="wn-rel-date">2026-07-05</span></div>
         <ul class="wn-rel-notes">
           <li><b>New home under pounceapps.</b> Installed with the old Homebrew tap? Re-tap to keep getting updates: <code>brew untap senzalldev/tap</code>, then <code>brew trust pounceapps/tap</code> and <code>brew install --cask pounceapps/tap/pouncesql</code>.</li>
           <li>After updating, macOS may ask once to allow PounceSQL to use its keychain item — click <b>Always Allow</b>. Your saved connections and settings are unchanged.</li>
