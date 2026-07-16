@@ -30,6 +30,7 @@
       <a href="#azure">Azure SQL</a>
       <a href="#sqlserver">SQL Server</a>
       <a href="#postgres">PostgreSQL</a>
+      <a href="#aws-iam">AWS RDS (IAM)</a>
       <a href="#sqlite">SQLite</a>
       <a href="#browsing">Browsing &amp; queries</a>
       <a href="#ai">AI assistant</a>
@@ -105,9 +106,55 @@ brew install --cask pounceapps/tap/pouncesql</code></pre>
     <section id="postgres">
       <h2>PostgreSQL</h2>
       <p>In the <b>PostgreSQL</b> tab, enter the server (<code>host</code> or
-        <code>host:5432</code>), your role, and password, then pick an SSL mode
-        (Prefer / Require / Disable). Click <b>Connect &amp; List Databases</b> to
-        pin the whole server (browse every database) or add one database directly.</p>
+        <code>host:5432</code>), then choose an <b>Authentication</b> mode:</p>
+      <ul>
+        <li><b>Password</b> — your role + password, with an SSL mode
+          (Prefer / Require / Disable). Best for local, LAN, Tailscale, or a
+          Postgres you run yourself.</li>
+        <li><b>AWS IAM</b> — connect to AWS RDS/Aurora with your AWS login instead
+          of a password (see below).</li>
+      </ul>
+      <p>Click <b>Connect &amp; List Databases</b> to pin the whole server (browse
+        every database) or add one database directly.</p>
+
+      <h3 id="aws-iam">AWS RDS &amp; Aurora — sign in with AWS (IAM)</h3>
+      <p>PounceSQL can authenticate to Amazon RDS/Aurora PostgreSQL using your AWS
+        login — no database password. On each connect it mints a short-lived token
+        from your AWS session and connects over TLS validated against Amazon's RDS
+        certificate authority (bundled in the app). It's the AWS analog of the
+        Azure <code>az login</code> flow.</p>
+
+      <h4>Each time you connect</h4>
+      <ol>
+        <li>Sign in to AWS in a terminal — whichever your account uses:
+          <code>aws sso login</code> (SSO, most work accounts) or
+          <code>aws configure</code> (access keys).</li>
+        <li>In the <b>PostgreSQL</b> tab, set <b>Authentication</b> to <b>AWS IAM</b>,
+          enter the RDS/Aurora endpoint and the database user; the <b>Region</b>
+          fills in from the endpoint. Leave the password blank.</li>
+        <li>If you're already signed in via the CLI you don't need the
+          <b>Sign in to AWS</b> button (that only starts a new SSO session) — just
+          click <b>Connect &amp; List Databases</b>.</li>
+      </ol>
+
+      <h4>One-time setup (database admin)</h4>
+      <ol>
+        <li>Enable <b>IAM DB authentication</b> on the instance (RDS → Modify).</li>
+        <li>Grant the database role permission to use IAM:
+          <code>GRANT rds_iam TO your_db_user;</code>. Note this makes that role
+          IAM-only (no more password), so prefer a dedicated user over the master.</li>
+        <li>Attach an IAM policy allowing <code>rds-db:connect</code> to your AWS
+          user/role, scoped to that database user and the instance's
+          <b>Resource ID</b> (<code>arn:aws:rds-db:REGION:ACCOUNT:dbuser:db-XXXX/your_db_user</code>).</li>
+        <li>Make the instance reachable: allow your IP on port <b>5432</b> in the
+          security group, and ensure it's reachable from your network.</li>
+        <li>IAM policy changes can take a minute or two to take effect.</li>
+      </ol>
+      <p><b>Troubleshooting:</b> <code>password authentication failed</code> means
+        the role isn't set for IAM yet; <code>PAM authentication failed</code> means
+        the IAM path is active but the token was rejected (missing
+        <code>rds-db:connect</code>, or still propagating); a timeout is the network
+        path (security group / public access).</p>
     </section>
 
     <section id="sqlite">
